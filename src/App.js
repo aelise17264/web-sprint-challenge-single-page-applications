@@ -37,10 +37,15 @@ const [disabled, setDisabled] = useState(initialDisabled)
 
 const thisUrl = 'https://reqres.in/api/users'
 
+const update = (name, value) => {
+  const updateOrder = {...values, [name]: value}
+  setValues(updateOrder)
+}
+
 const getInfo = () => {
   axios.get(thisUrl)
   .then(res => {
-    setPizza(res.data)
+    setPizza(res.data.data)
   })
   .catch(error => {
     console.log('check axios get')
@@ -51,6 +56,7 @@ const postOrder = newOrder => {
   axios.post(thisUrl, newOrder)
   .then( res => {
     setPizza([...pizza, res.data])
+    console.log(newOrder)
   })
   .catch(error => {
     console.log('check axios post')
@@ -90,9 +96,9 @@ const checkboxChange = (name, isChecked) => {
     toppings:{
       ...values.toppings,
       [name]: isChecked
-    }
-    
-  })
+      }
+    })
+  console.log(values.toppings === false)
 }
 
 
@@ -100,8 +106,8 @@ const submit = () => {
   const newOrder = {
     name: values.name.trim(),
     size: values.size,
-    special: values.special.trim(),
-    toppings: Object.keys(values.toppings).filter(tp => tp)
+    special: values.special,
+    toppings: Object.keys(values.toppings).filter(tp => tp),
   }
   postOrder(newOrder)
 }
@@ -120,15 +126,27 @@ useEffect(() =>{
 
 
   return (
-    <>
+    
     <div className="homepage">
       <h1>Lambda Eats</h1>
       <p>Ready for the weekend?</p>
       <Link to='/pizza' className='order-button'>Start Your Order Here</Link>
-      </div>
+     
       
       <Switch>
-      <Route path='/pizza/confirmation'>
+      
+        <Route path='/pizza'>
+          <Pizza
+          update={update}
+          values={values}
+          inputChange={inputChange}
+          submit={submit}
+          checkboxChange={checkboxChange}
+          disabled={disabled}
+          />
+        </Route>
+
+        <Route path='/pizza/confirmation'>
          
          {
          pizza.map(pi => {
@@ -138,21 +156,10 @@ useEffect(() =>{
          )}
         
         </Route>
-        <Route path='/pizza'>
-          <Pizza
-          values={values}
-          inputChange={inputChange}
-          submit={submit}
-          checkboxChange={checkboxChange}
-          disabled={disabled}
-          />
-        </Route>
-      <Route path='/'>
-        <App/>
-        </Route> 
 
+      
       </Switch>
-    </>
+    </div>
   );
 };
 export default App;

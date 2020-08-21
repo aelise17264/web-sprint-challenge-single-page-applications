@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 function Pizza(props) {
 
         const {
+            update,
         values,
         inputChange,
       submit,
@@ -14,11 +15,20 @@ function Pizza(props) {
 const onSubmit = event => {
     event.preventDefault()
     submit()
+    
+}
+
+const onChange = event => {
+    const name = event.target.name
+    const value = event.target.value
+
+    update(name, value)
 }
 
 const onCheckboxChange = event => {
-    const {name, checked} = event.target
-    checkboxChange(name,checked)
+    const name = event.target.name
+    const checked = event.target.checked
+    checkboxChange(name, checked)
 }
 
 const onInputChange = event => {
@@ -52,13 +62,13 @@ const onInputChange = event => {
                             <option value='eighteen'>18 inch</option>
                         </select>
                     </label>
-                   
-                    <label>Toppings:
+                   <div className='toppings'>
+                    <p>Toppings:</p>
                         <label>Pepperoni
                             <input
                             type='checkbox'
                             name='toppings'
-                            checked={values.toppings.pepperoni === true}
+                            checked={values.pepperoni}
                             onChange={onCheckboxChange}
                             />
                         </label>
@@ -66,7 +76,7 @@ const onInputChange = event => {
                             <input
                             type='checkbox'
                             name='toppings'
-                            checked={values.toppings.sausage === true}
+                            checked={values.sausage}
                             onChange={onCheckboxChange}
                             />
                         </label>
@@ -74,7 +84,7 @@ const onInputChange = event => {
                             <input
                             type='checkbox'
                             name='toppings'
-                            checked={values.toppings.peppers === true}
+                            checked={values.peppers}
                             onChange={onCheckboxChange}
                             />
                         </label>
@@ -82,15 +92,15 @@ const onInputChange = event => {
                             <input
                             type='checkbox'
                             name='toppings'
-                            checked={values.toppings.cheese === true}
+                            checked={values.cheese}
                             onChange={onCheckboxChange}
                             />
                         </label>
-                    </label>
+                        </div>
                     <label>Special Instructions:
                         <input
                             value={values.special}
-                            onChange={onInputChange}
+                            onChange={onChange}
                             name='special'
                             type='text'
                             placeholder='anything special we should know'
