@@ -68,7 +68,7 @@ const onInputChange = event => {
                         <label>Pepperoni
                             <input
                             type='checkbox'
-                            name='toppings'
+                            name='pepperoni'
                             checked={values.pepperoni}
                             onChange={onCheckboxChange}
                             />
@@ -76,7 +76,7 @@ const onInputChange = event => {
                         <label>Sausage
                             <input
                             type='checkbox'
-                            name='toppings'
+                            name='sausage'
                             checked={values.sausage}
                             onChange={onCheckboxChange}
                             />
@@ -84,7 +84,7 @@ const onInputChange = event => {
                           <label>Green Peppers
                             <input
                             type='checkbox'
-                            name='toppings'
+                            name='peppers'
                             checked={values.peppers}
                             onChange={onCheckboxChange}
                             />
@@ -92,7 +92,7 @@ const onInputChange = event => {
                           <label>Extra Cheese
                             <input
                             type='checkbox'
-                            name='toppings'
+                            name='cheese'
                             checked={values.cheese}
                             onChange={onCheckboxChange}
                             />
@@ -112,7 +112,7 @@ const onInputChange = event => {
                     <div>{orderErrors.name}</div>
                     <div>{orderErrors.size}</div>
                 </div>
-    <Link to='./confirmation' onSubmit={onSubmit}  disabled={disabled}>Submit Your Order</Link>
+    <Link to='./confirmation' onSubmit={onSubmit} className='submit' disabled={disabled}>Submit Your Order</Link>
     </form>
    </>
     )

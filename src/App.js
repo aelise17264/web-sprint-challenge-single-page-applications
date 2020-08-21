@@ -38,7 +38,7 @@ const [disabled, setDisabled] = useState(initialDisabled)
 const thisUrl = 'https://reqres.in/api/users'
 
 const update = (name, value) => {
-  const updateOrder = {...values, [name]: value}
+  const updateOrder = {[name]: value, ...values }
   setValues(updateOrder)
 }
 
@@ -53,17 +53,16 @@ const getInfo = () => {
 }
 
 const postOrder = newOrder => {
-  axios.post(thisUrl, newOrder)
+  console.log(newOrder)
+  axios.post('https://reqres.in/api/users', newOrder)
   .then( res => {
-    setPizza([...pizza, res.data])
-    console.log(newOrder)
+    setPizza([res.data, ...pizza])
+   
   })
   .catch(error => {
     console.log('check axios post')
   })
-  .finally(() => {
-    setValues(initialValues)
-  })
+ 
 }
 
 const inputChange = (name, value) => {
@@ -104,11 +103,12 @@ const checkboxChange = (name, isChecked) => {
 
 const submit = () => {
   const newOrder = {
-    name: values.name.trim(),
+    name: values.first_name.trim(),
     size: values.size,
     special: values.special,
     toppings: Object.keys(values.toppings).filter(tp => tp),
   }
+  
   postOrder(newOrder)
 }
 
@@ -158,9 +158,11 @@ useEffect(() =>{
         
         </Route>
 
-      
+        
       </Switch>
+      <Link to='/'>Back Home</Link>
     </div>
+    
   );
 };
 export default App;
