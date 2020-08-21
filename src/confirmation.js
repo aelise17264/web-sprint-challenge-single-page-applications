@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Confirmation =(pi) => {
+const Confirmation =(props) => {
+    
+    const {pi} = props
     
     return(
         <>

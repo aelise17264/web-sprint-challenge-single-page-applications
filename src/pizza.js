@@ -39,7 +39,7 @@ const onInputChange = event => {
 
     return(
         <>
-        <form className='orderContainer'>
+        <form className='orderContainer' onSubmit={onSubmit}>
             <h2>Customize Your Pizza</h2>
                 <div className='orderInfo'>
                     <label>Your Name:
@@ -51,20 +51,20 @@ const onInputChange = event => {
                         placeholder='your name here'
                         />
                     </label>
-                    <label>Size:
-                        <select className='pizzaSize' 
+                    <label>size:
+                        <select className='pizzasize' 
                         name='size' 
                         value={values.size} 
                         onChange={onInputChange}>
-                            <option value=''>--Pizza Size --</option>
+                            <option value=''>--Pizza size --</option>
                             <option value='twelve'>12 inch</option>
                             <option value='fourteen'>14 inch</option>
                             <option value='sixteen'>16 inch</option>
                             <option value='eighteen'>18 inch</option>
                         </select>
                     </label>
-                   <div className='toppings'>
-                    <p>Toppings:</p>
+                   <div className='color'>
+                    <p>Color:</p>
                         <label>Pepperoni
                             <input
                             type='checkbox'
@@ -112,7 +112,8 @@ const onInputChange = event => {
                     <div>{orderErrors.name}</div>
                     <div>{orderErrors.size}</div>
                 </div>
-    <Link to='./confirmation' onSubmit={onSubmit} className='submit' disabled={disabled}>Submit Your Order</Link>
+    <button >Submit Your Order</button>
+    <Link to='/confirmation'>View Order Here</Link>
     </form>
    </>
     )

@@ -35,7 +35,7 @@ const [values, setValues] = useState(initialValues)
 const [orderErrors, setOrderErrors] = useState(initialErrors)
 const [disabled, setDisabled] = useState(initialDisabled)
 
-const thisUrl = 'https://reqres.in/api/users'
+const thisUrl = 'https://reqres.in/api/pizza'
 
 const update = (name, value) => {
   const updateOrder = {[name]: value, ...values }
@@ -54,7 +54,7 @@ const getInfo = () => {
 
 const postOrder = newOrder => {
   console.log(newOrder)
-  axios.post('https://reqres.in/api/users', newOrder)
+  axios.post('https://reqres.in/api/pizza', newOrder)
   .then( res => {
     setPizza([res.data, ...pizza])
    
@@ -103,7 +103,7 @@ const checkboxChange = (name, isChecked) => {
 
 const submit = () => {
   const newOrder = {
-    name: values.first_name.trim(),
+    name: values.name.trim(),
     size: values.size,
     special: values.special,
     toppings: Object.keys(values.toppings).filter(tp => tp),
@@ -111,6 +111,7 @@ const submit = () => {
   
   postOrder(newOrder)
 }
+
 
 useEffect(() => {
   getInfo()
