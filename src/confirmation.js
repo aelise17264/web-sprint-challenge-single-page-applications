@@ -1,8 +1,8 @@
 
 
-const confirmation =() => {
+const Confirmation =() => {
 
 
 }
 
-export default confirmation
+export default Confirmation

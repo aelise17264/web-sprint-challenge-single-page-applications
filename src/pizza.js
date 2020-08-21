@@ -1,21 +1,35 @@
 import React from 'react'
-import axios from 'axios';
-import {useHistory, Link} from 'react-router-dom'
+import Link from 'react-router-dom'
 
-const Pizza = (props) => {
+function Pizza(props) {
 
-const {
-values,
-inputChange,
-submit,
-checkboxChange
-} = props
+        const {
+        values,
+        inputChange,
+        submit,
+        checkboxChange,
+        disabled
+        } = props
 
+const onSubmit = event => {
+    event.preventDefault()
+    submit()
+}
+
+const onCheckboxChange = event => {
+    const {name, checked} = event.target
+    checkboxChange(name,checked)
+}
+
+const onInputChange = event => {
+    const {name, value} = event.target
+    inputChange(name, value)
+}
 
     return(
         <>
         <form className='orderContainer'>
-            <h2>Customize Your Pizza🍕</h2>
+            <h2>Customize Your Pizza<span>🍕</span></h2>
                 <div className='orderInfo'>
                     <label>Your Name:
                         <input
@@ -45,7 +59,7 @@ checkboxChange
                             type='checkbox'
                             name='toppings'
                             checked={values.toppings.pepperoni === true}
-                            onChange={onInputChange}
+                            onChange={onCheckboxChange}
                             />
                         </label>
                         <label>Sausage
@@ -53,7 +67,7 @@ checkboxChange
                             type='checkbox'
                             name='toppings'
                             checked={values.toppings.sausage === true}
-                            onChange={onInputChange}
+                            onChange={onCheckboxChange}
                             />
                         </label>
                           <label>Green Peppers
@@ -61,7 +75,7 @@ checkboxChange
                             type='checkbox'
                             name='toppings'
                             checked={values.toppings.peppers === true}
-                            onChange={onInputChange}
+                            onChange={onCheckboxChange}
                             />
                         </label>
                           <label>Extra Cheese
@@ -69,7 +83,7 @@ checkboxChange
                             type='checkbox'
                             name='toppings'
                             checked={values.toppings.cheese === true}
-                            onChange={onInputChange}
+                            onChange={onCheckboxChange}
                             />
                         </label>
                     </label>
