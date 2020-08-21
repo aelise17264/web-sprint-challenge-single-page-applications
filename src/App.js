@@ -5,7 +5,7 @@ import Pizza from './pizza';
 import {v4 as uuid} from 'uuid';
 import * as yup from 'yup';
 import formSchema from './formSchema';
-
+import Confirmation from './confirmation'
 
 const initialValues ={
   id: uuid(),
@@ -35,7 +35,7 @@ const [values, setValues] = useState(initialValues)
 const [orderErrors, setOrderErrors] = useState(initialErrors)
 const [disabled, setDisabled] = useState(initialDisabled)
 
-const thisUrl = 'https://reqres.in/api/orders'
+const thisUrl = 'https://reqres.in/api/users'
 
 const getInfo = () => {
   axios.get(thisUrl)
@@ -116,7 +116,7 @@ useEffect(() =>{
   .then(valid => {
     setDisabled(!valid)
   });
-}, [values])
+}, [values]);
 
 
   return (
@@ -133,18 +133,9 @@ useEffect(() =>{
          {
          pizza.map(pi => {
           return(
-            <div className='confirmation' key={pi.id}>
-              <div className='order-container'>
-          <h2>Name: {pi.name}</h2>
-          <p>Pizza Size: {pi.size}</p>
-          <p>Toppings: {pi.toppings}</p>
-          <p>Special Instructions: {pi.special}</p>
-              </div>
-    
-            </div>
-          )
-        })
-         }
+            <Confirmation key={pi.id} pi={pi}/>
+          )}
+         )}
         
         </Route>
         <Route path='/pizza'>

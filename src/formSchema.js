@@ -7,7 +7,7 @@ const formSchema = yup.object().shape({
         .required("We need to know who you are")    ,
     size: yup
         .string()
-        .oneOf(['twelve', 'fourteen', 'sixteen', 'eighteen'])
+        .oneOf(['twelve', 'fourteen', 'sixteen', 'eighteen'], "You must choose a size")
         .required("We need to know how bit to make your pie") ,
      toppings: yup
      .string()
