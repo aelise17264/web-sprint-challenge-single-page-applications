@@ -98,7 +98,7 @@ const checkboxChange = (name, isChecked) => {
       [name]: isChecked
       }
     })
-  console.log(values.toppings === false)
+  
 }
 
 
@@ -143,10 +143,11 @@ useEffect(() =>{
           submit={submit}
           checkboxChange={checkboxChange}
           disabled={disabled}
+          orderErrors={orderErrors}
           />
         </Route>
 
-        <Route path='/pizza/confirmation'>
+        <Route path='/confirmation'>
          
          {
          pizza.map(pi => {

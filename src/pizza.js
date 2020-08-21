@@ -9,7 +9,8 @@ function Pizza(props) {
         inputChange,
       submit,
         checkboxChange,
-        disabled
+        disabled,
+        orderErrors
         } = props
 
 const onSubmit = event => {
@@ -107,8 +108,12 @@ const onInputChange = event => {
                         />
                     </label>
                 </div>
-        </form>
+                <div className='Errors'>
+                    <div>{orderErrors.name}</div>
+                    <div>{orderErrors.size}</div>
+                </div>
     <Link to='./confirmation' onSubmit={onSubmit}  disabled={disabled}>Submit Your Order</Link>
+    </form>
    </>
     )
 
