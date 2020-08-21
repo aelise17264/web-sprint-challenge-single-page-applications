@@ -35,7 +35,7 @@ const [values, setValues] = useState(initialValues)
 const [orderErrors, setOrderErrors] = useState(initialErrors)
 const [disabled, setDisabled] = useState(initialDisabled)
 
-const thisUrl = 'https://reqres.in/api/unknown/'
+const thisUrl = 'https://reqres.in/api/orders'
 
 const getInfo = () => {
   axios.get(thisUrl)
@@ -87,7 +87,11 @@ const inputChange = (name, value) => {
 const checkboxChange = (name, isChecked) => {
   setValues({
     ...values,
-    [name]: isChecked
+    toppings:{
+      ...values.toppings,
+      [name]: isChecked
+    }
+    
   })
 }
 
@@ -96,8 +100,8 @@ const submit = () => {
   const newOrder = {
     name: values.name.trim(),
     size: values.size,
-    toppings: values.toppings,
     special: values.special.trim(),
+    toppings: Object.keys(values.toppings).filter(tp => tp)
   }
   postOrder(newOrder)
 }
@@ -106,12 +110,14 @@ useEffect(() => {
   getInfo()
 }, [])
 
+
 useEffect(() =>{
   formSchema.isValid(values)
   .then(valid => {
     setDisabled(!valid)
   });
 }, [values])
+
 
   return (
     <>
@@ -124,7 +130,8 @@ useEffect(() =>{
       <Switch>
       <Route path='/pizza/confirmation'>
          
-         {pizza.map(pi => {
+         {
+         pizza.map(pi => {
           return(
             <div className='confirmation' key={pi.id}>
               <div className='order-container'>

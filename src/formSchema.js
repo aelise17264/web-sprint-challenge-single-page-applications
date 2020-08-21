@@ -7,8 +7,12 @@ const formSchema = yup.object().shape({
         .required("We need to know who you are")    ,
     size: yup
         .string()
+        .oneOf(['twelve', 'fourteen', 'sixteen', 'eighteen'])
         .required("We need to know how bit to make your pie") ,
-     toppings: yup,
+     toppings: yup
+     .string()
+     .oneOf(['pepperoni', 'sausage', 'peppers', 'cheese'])
+     ,
      special: yup
      .string(),
 });

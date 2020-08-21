@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {Link} from 'react-router-dom'
 
 function Pizza(props) {
@@ -6,7 +6,7 @@ function Pizza(props) {
         const {
         values,
         inputChange,
-        submit,
+      submit,
         checkboxChange,
         disabled
         } = props
@@ -98,7 +98,7 @@ const onInputChange = event => {
                     </label>
                 </div>
         </form>
-    <Link to='./confirmation' type='submit' onSubmit={onSubmit} disabled={disabled}>Submit Your Order</Link>
+    <Link to='./confirmation' onSubmit={onSubmit}  disabled={disabled}>Submit Your Order</Link>
    </>
     )
 
