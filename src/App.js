@@ -2,10 +2,10 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {Route, Link, Switch} from 'react-router-dom';
 import Pizza from './pizza';
-import Confirmation from './confirmation'
-import {v4 as uuid} from 'uuid'
-import * as yup from 'yup'
-import formSchema from './formSchema'
+import {v4 as uuid} from 'uuid';
+import * as yup from 'yup';
+import formSchema from './formSchema';
+
 
 const initialValues ={
   id: uuid(),
@@ -40,7 +40,7 @@ const thisUrl = 'https://reqres.in/api/unknown/'
 const getInfo = () => {
   axios.get(thisUrl)
   .then(res => {
-    setPizza(res.data.data)
+    setPizza(res.data)
   })
   .catch(error => {
     console.log('check axios get')
@@ -123,7 +123,22 @@ useEffect(() =>{
       
       <Switch>
       <Route path='/pizza/confirmation'>
-          <Confirmation/>
+         
+         {pizza.map(pi => {
+          return(
+            <div className='confirmation' key={pi.id}>
+              <div className='order-container'>
+          <h2>Name: {pi.name}</h2>
+          <p>Pizza Size: {pi.size}</p>
+          <p>Toppings: {pi.toppings}</p>
+          <p>Special Instructions: {pi.special}</p>
+              </div>
+    
+            </div>
+          )
+        })
+         }
+        
         </Route>
         <Route path='/pizza'>
           <Pizza

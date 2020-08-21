@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom'
 
 function Pizza(props) {
 
@@ -29,7 +29,7 @@ const onInputChange = event => {
     return(
         <>
         <form className='orderContainer'>
-            <h2>Customize Your Pizza<span>🍕</span></h2>
+            <h2>Customize Your Pizza</h2>
                 <div className='orderInfo'>
                     <label>Your Name:
                         <input
