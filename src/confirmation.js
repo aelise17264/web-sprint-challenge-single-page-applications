@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Confirmation =({pi}) => {
+const Confirmation =(pi) => {
     
     return(
         <>
@@ -20,9 +20,6 @@ const Confirmation =({pi}) => {
      )}
     
 </ul>
-
-
-    
 
 }
   
